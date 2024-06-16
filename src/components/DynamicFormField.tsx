@@ -1,36 +1,74 @@
-import { Component, createSignal } from "solid-js"
-import { SetStoreFunction, Store } from "solid-js/store"
-import { IField } from "../interfaces/form-field"
+import { Component, For, JSX } from "solid-js"
+import { createStore, SetStoreFunction, Store } from "solid-js/store"
+import { IField, IForm } from "../interfaces"
 import DynamicFormFieldInput from "./DynamicFormFieldInput"
-import { IForm } from "../interfaces/form"
+import { AiOutlineCloseCircle } from "solid-icons/ai"
+import { AiTwotonePlusCircle } from "solid-icons/ai"
 
 interface Props {
     form: IForm
     field: IField
-    instance?: number
+    index?: number
+    deleteArrayField?: (index: number) => void
     setFormValues: SetStoreFunction<{
         [key: string]: any
     }>
     formValues: Store<{ [key: string]: any }>
     formPath: (string | number)[]
+    inputSequenceTypes: (string | undefined)[]
 }
 
 const DynamicFormField: Component<Props> = (props: Props) => {
-    const instanceString =
-        props.instance !== undefined ? props.instance.toString() : ""
     console.log(`
         Field Name: ${props.field.name}
-        Field Instance: ${instanceString}
+        Field Index: ${props.index}
         Field Length: ${props.field.fields.length}
-        Form Path: ${props.formPath}`)
-    const [getCount, setCount] = createSignal<number>(1)
+        Form Path: ${props.formPath}
+        Input Sequence Types: ${props.inputSequenceTypes}`)
+
+    const [arrayFields, setArrayFields] = createStore<
+        (JSX.Element | Element)[]
+    >([])
+
+    const deleteArrayField = (index?: number) => {
+        // @ts-ignore
+        props.setFormValues(...props.formPath, (prev: Array<any>) =>
+            prev.filter((_: any, i: number) => i !== index)
+        )
+        setArrayFields(fields => fields.filter((_, i) => i !== index))
+    }
+
+    const addArrayField = (field: IField, label: string) => {
+        const lengthBeforeAdding = arrayFields.length
+        // @ts-ignore
+        props.setFormValues(...props.formPath, lengthBeforeAdding, {})
+        const newArrayField = (
+            <div>
+                <DynamicFormField
+                    form={props.form}
+                    field={field}
+                    index={lengthBeforeAdding}
+                    setFormValues={props.setFormValues}
+                    deleteArrayField={deleteArrayField}
+                    formValues={props.formValues}
+                    formPath={[...props.formPath, lengthBeforeAdding]}
+                    inputSequenceTypes={[
+                        ...props.inputSequenceTypes,
+                        field.inputType
+                    ]}
+                />
+            </div>
+        )
+        setArrayFields([...arrayFields, newArrayField])
+    }
+
     if (props.field.fields.length === 0) {
         // console.log("No fields found.")
         return (
             <DynamicFormFieldInput
                 form={props.form}
                 field={props.field}
-                instance={props.instance}
+                index={props.index}
                 setFormValues={props.setFormValues}
                 formValues={props.formValues}
                 formPath={props.formPath}
@@ -38,81 +76,80 @@ const DynamicFormField: Component<Props> = (props: Props) => {
         )
     } else {
         // console.log("Fields found.")
-        const formFieldLabel = `${props.field.label} ${instanceString}`
-        const formFieldName = `${props.field.name}${instanceString}`
+        const complexFieldLabel = `${props.field.label} ${props.index !== undefined ? props.index + 1 : ""}`
+        const complexFieldName = `${props.field.name}${props.index !== undefined ? props.index : ""}`
         if (props.field.inputType === "arrayForm") {
-            props.setFormValues(formFieldName, [])
+            // @ts-ignore
+            props.setFormValues(...props.formPath, [])
         } else {
             if (props.formPath.at(-1) === props.field.name) {
                 // Made sure the nestedForm is not a part of arrayForm
-                props.setFormValues(formFieldName, {})
+                props.setFormValues(complexFieldName, {})
             }
         }
         return (
-            <div class="border-gray-400 border rounded p-2 my-2">
-                {props.field.inputType === "arrayForm" ? (
-                    // If the input type is an arrayForm, render the fields as an array
-                    <div>
-                        {props.field.fields.map((field: IField) => {
-                            return (
-                                <div>
-                                    <div class="flex justify-between items-center">
-                                        <h1 class="w-full">{formFieldLabel}</h1>
-                                        <button
-                                            class="border rounded-full px-4 py-2 bg-black text-white text-lg"
-                                            type="button"
-                                            onClick={(e: Event) => {
-                                                setCount(getCount() + 1)
-                                            }}
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                    {Array.from(
-                                        { length: getCount() },
-                                        (x, i) => i
-                                    ).map(i => {
-                                        props.setFormValues(
-                                            formFieldName,
-                                            i,
-                                            {}
-                                        )
-                                        return (
-                                            <DynamicFormField
-                                                form={props.form}
-                                                field={field}
-                                                instance={i + 1}
-                                                setFormValues={
-                                                    props.setFormValues
+            <div>
+                <h1
+                    class="w-full"
+                    hidden={props.field.inputType === "nestedForm"}
+                >
+                    {complexFieldLabel}
+                </h1>
+                {props.field.fields.map((field: IField) => (
+                    <>
+                        <span hidden={props.field.inputType !== "arrayForm"}>
+                            <AiTwotonePlusCircle
+                                onClick={() =>
+                                    addArrayField(field, complexFieldLabel)
+                                }
+                                color="green"
+                                size={36}
+                            />
+                        </span>
+                        {props.field.inputType === "arrayForm" ? (
+                            <For each={arrayFields}>
+                                {(arrayField, i) => (
+                                    <div class="py-4 border-t-2 border-b-2 border-gray-300">
+                                        <div class="flex justify-between items-center">
+                                            <h1
+                                                class="w-full"
+                                                hidden={
+                                                    props.field.inputType ===
+                                                    "nestedForm"
                                                 }
-                                                formValues={props.formValues}
-                                                formPath={[
-                                                    ...props.formPath,
-                                                    i
-                                                ]}
-                                            />
-                                        )
-                                    })}
-                                </div>
-                            )
-                        })}
-                    </div>
-                ) : (
-                    // If the input type is nestedForm, render the fields as nested forms
-                    <div>
-                        <h1 class="w-full">{formFieldLabel}</h1>
-                        {props.field.fields.map((field: IField) => (
+                                            >
+                                                {props.field.label} {i() + 1}
+                                            </h1>
+                                            <span>
+                                                <AiOutlineCloseCircle
+                                                    onClick={() =>
+                                                        deleteArrayField(i())
+                                                    }
+                                                    color="red"
+                                                    size={30}
+                                                />
+                                            </span>
+                                        </div>
+                                        {arrayField}
+                                    </div>
+                                )}
+                            </For>
+                        ) : (
                             <DynamicFormField
                                 form={props.form}
                                 field={field}
-                                instance={props.instance}
+                                index={props.index}
                                 setFormValues={props.setFormValues}
                                 formValues={props.formValues}
                                 formPath={[...props.formPath, field.name]}
+                                inputSequenceTypes={[
+                                    ...props.inputSequenceTypes,
+                                    field.inputType
+                                ]}
                             />
-                        ))}
-                    </div>
-                )}
+                        )}
+                    </>
+                ))}
             </div>
         )
     }

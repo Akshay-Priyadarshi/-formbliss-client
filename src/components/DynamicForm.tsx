@@ -27,6 +27,7 @@ const DynamicForm: Component<Props> = (props: Props) => {
                         setFormValues={setFormValues}
                         formValues={formValues}
                         formPath={[field.name]}
+                        inputSequenceTypes={[field.inputType]}
                     />
                 ))}
             </form>
