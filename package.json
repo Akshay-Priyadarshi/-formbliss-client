@@ -1,0 +1,25 @@
+{
+    "name": "@formit/client",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "start": "vite",
+        "dev": "vite",
+        "build": "vite build",
+        "serve": "vite preview",
+        "format": "prettier --write ."
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "autoprefixer": "^10.4.19",
+        "prettier": "^3.3.2",
+        "solid-devtools": "^0.29.3",
+        "tailwindcss": "^3.4.4",
+        "typescript": "^5.4.5",
+        "vite": "^5.3.1",
+        "vite-plugin-solid": "^2.10.2"
+    },
+    "dependencies": {
+        "solid-js": "^1.8.17"
+    }
+}

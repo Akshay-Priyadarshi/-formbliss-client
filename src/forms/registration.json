@@ -1,0 +1,205 @@
+{
+    "id": "registrationForm",
+    "name": "registrationForm",
+    "label": "Registration Form",
+    "fields": [
+        {
+            "id": "fullName",
+            "name": "fullName",
+            "label": "Full Name",
+            "inputType": "nestedform",
+            "dataType": "object",
+            "options": {
+                "required": null
+            },
+            "fields": [
+                {
+                    "id": "firstName",
+                    "name": "firstName",
+                    "label": "First Name",
+                    "inputType": "text",
+                    "dataType": "string",
+                    "fields": [],
+                    "options": {
+                        "required": true
+                    }
+                },
+                {
+                    "id": "middleName",
+                    "name": "middleName",
+                    "label": "Middle Name",
+                    "inputType": "text",
+                    "dataType": "string",
+                    "fields": [],
+                    "options": {
+                        "required": false
+                    }
+                },
+                {
+                    "id": "lastName",
+                    "name": "lastName",
+                    "label": "Last Name",
+                    "inputType": "text",
+                    "dataType": "string",
+                    "fields": [],
+                    "options": {
+                        "required": true
+                    }
+                }
+            ]
+        },
+        {
+            "id": "dob",
+            "name": "dob",
+            "label": "Date of Birth",
+            "inputType": "nestedform",
+            "dataType": "object",
+            "options": {
+                "required": null
+            },
+            "fields": [
+                {
+                    "id": "day",
+                    "name": "day",
+                    "label": "Day",
+                    "inputType": "number",
+                    "dataType": "number",
+                    "fields": [],
+                    "options": {
+                        "required": true
+                    }
+                },
+                {
+                    "id": "month",
+                    "name": "month",
+                    "label": "Month",
+                    "inputType": "number",
+                    "dataType": "number",
+                    "fields": [],
+                    "options": {
+                        "required": true
+                    }
+                },
+                {
+                    "id": "year",
+                    "name": "year",
+                    "label": "Year",
+                    "inputType": "number",
+                    "dataType": "number",
+                    "fields": [],
+                    "options": {
+                        "required": true
+                    }
+                }
+            ]
+        },
+        {
+            "id": "addresses",
+            "name": "addresses",
+            "label": "Addresses",
+            "inputType": "arrayForm",
+            "dataType": "array",
+            "fields": [
+                {
+                    "id": "address",
+                    "name": "address",
+                    "label": "Address",
+                    "inputType": "nestedForm",
+                    "dataType": "object",
+                    "fields": [
+                        {
+                            "id": "addressLine",
+                            "name": "addressLine",
+                            "label": "Address Line",
+                            "inputType": "text",
+                            "dataType": "string",
+                            "fields": [],
+                            "options": {
+                                "required": true
+                            }
+                        },
+                        {
+                            "id": "landmark",
+                            "name": "landmark",
+                            "label": "Landmark",
+                            "inputType": "text",
+                            "dataType": "string",
+                            "fields": [],
+                            "options": {
+                                "required": true
+                            }
+                        },
+                        {
+                            "id": "city",
+                            "name": "city",
+                            "label": "City",
+                            "inputType": "text",
+                            "dataType": "string",
+                            "fields": [],
+                            "options": {
+                                "required": true
+                            }
+                        }
+                    ]
+                }
+            ],
+            "options": {
+                "required": null
+            }
+        },
+        {
+            "id": "email",
+            "name": "email",
+            "label": "Email",
+            "inputType": "email",
+            "dataType": "string",
+            "fields": [],
+            "options": {
+                "required": true
+            }
+        },
+        {
+            "id": "password",
+            "name": "password",
+            "label": "Password",
+            "inputType": "password",
+            "dataType": "string",
+            "fields": [],
+            "options": {
+                "required": true
+            }
+        },
+        {
+            "id": "confirmPassword",
+            "name": "confirmPassword",
+            "label": "Confirm Password",
+            "inputType": "password",
+            "dataType": "string",
+            "fields": [],
+            "options": {
+                "required": true
+            }
+        },
+        {
+            "id": "dateWhenKnown",
+            "name": "dateWhenKnown",
+            "label": "When did you get to know about us?",
+            "inputType": "date",
+            "dataType": "string",
+            "fields": [],
+            "options": {
+                "required": true
+            }
+        },
+        {
+            "id": "submitButton",
+            "name": "submitButton",
+            "inputType": "submit",
+            "label": "Register",
+            "fields": [],
+            "options": {
+                "required": null
+            }
+        }
+    ]
+}

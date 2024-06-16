@@ -1,0 +1,50 @@
+{
+    "id": "loginForm",
+    "name": "loginForm",
+    "label": "Login Form",
+    "fields": [
+        {
+            "id": "email",
+            "name": "email",
+            "label": "Email",
+            "inputType": "email",
+            "dataType": "string",
+            "fields": [],
+            "options": {
+                "required": true
+            }
+        },
+        {
+            "id": "password",
+            "name": "password",
+            "label": "Password",
+            "inputType": "password",
+            "dataType": "string",
+            "fields": [],
+            "options": {
+                "required": true
+            }
+        },
+        {
+            "id": "tnc",
+            "name": "tnc",
+            "label": "Do you agree to the terms and condition?",
+            "inputType": "checkbox",
+            "dataType": "boolean",
+            "fields": [],
+            "options": {
+                "required": true
+            }
+        },
+        {
+            "id": "submit",
+            "name": "submit",
+            "label": "Submit",
+            "inputType": "submit",
+            "fields": [],
+            "options": {
+                "required": null
+            }
+        }
+    ]
+}
