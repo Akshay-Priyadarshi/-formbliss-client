@@ -22,6 +22,7 @@ const DynamicForm: Component<Props> = (props: Props) => {
             >
                 {props.form.fields.map(field => (
                     <DynamicFormField
+                        form={props.form}
                         field={field}
                         setFormValues={setFormValues}
                         formValues={formValues}

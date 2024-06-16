@@ -1,8 +1,10 @@
 import { Component, createSignal } from "solid-js"
 import { SetStoreFunction, Store } from "solid-js/store"
 import { IField } from "../interfaces/form-field"
+import { IForm } from "../interfaces/form"
 
 interface Props {
+    form: IForm
     field: IField
     instance?: number
     setFormValues: SetStoreFunction<{
@@ -13,12 +15,13 @@ interface Props {
 }
 
 const DynamicFormFieldInput: Component<Props> = (props: Props) => {
+    const inputId = `${props.form.id}-${props.field.id}${props.instance !== undefined ? props.instance : ""}`
     switch (props.field.inputType) {
         case "submit":
             return (
                 <div class="w-full my-4">
                     <input
-                        id={`${props.field.id}${props.instance !== undefined ? props.instance : ""}`}
+                        id={inputId}
                         name={`${props.field.name}${props.instance !== undefined ? props.instance : ""}`}
                         class="border-gray-500 border rounded w-full bg-blue-500 text-white"
                         type={props.field.inputType}
@@ -40,7 +43,7 @@ const DynamicFormFieldInput: Component<Props> = (props: Props) => {
                 <div class="w-full my-4">
                     <label
                         class="w-full my-2"
-                        for={`${props.field.id}${props.instance !== undefined ? props.instance : ""}`}
+                        for={inputId}
                         hidden={props.field.inputType === "submit"}
                     >
                         {props.field.label}
@@ -62,7 +65,7 @@ const DynamicFormFieldInput: Component<Props> = (props: Props) => {
                     <input
                         class="border-gray-500 border rounded w-full"
                         type={props.field.inputType}
-                        id={`${props.field.id}${props.instance !== undefined ? props.instance : ""}`}
+                        id={inputId}
                         name={`${props.field.name}${props.instance !== undefined ? props.instance : ""}`}
                         value={getInputValue()}
                         onInput={e => {

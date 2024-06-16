@@ -2,8 +2,10 @@ import { Component, createSignal } from "solid-js"
 import { SetStoreFunction, Store } from "solid-js/store"
 import { IField } from "../interfaces/form-field"
 import DynamicFormFieldInput from "./DynamicFormFieldInput"
+import { IForm } from "../interfaces/form"
 
 interface Props {
+    form: IForm
     field: IField
     instance?: number
     setFormValues: SetStoreFunction<{
@@ -26,6 +28,7 @@ const DynamicFormField: Component<Props> = (props: Props) => {
         // console.log("No fields found.")
         return (
             <DynamicFormFieldInput
+                form={props.form}
                 field={props.field}
                 instance={props.instance}
                 setFormValues={props.setFormValues}
@@ -76,6 +79,7 @@ const DynamicFormField: Component<Props> = (props: Props) => {
                                         )
                                         return (
                                             <DynamicFormField
+                                                form={props.form}
                                                 field={field}
                                                 instance={i + 1}
                                                 setFormValues={
@@ -99,6 +103,7 @@ const DynamicFormField: Component<Props> = (props: Props) => {
                         <h1 class="w-full">{formFieldLabel}</h1>
                         {props.field.fields.map((field: IField) => (
                             <DynamicFormField
+                                form={props.form}
                                 field={field}
                                 instance={props.instance}
                                 setFormValues={props.setFormValues}
