@@ -88,7 +88,7 @@ const DynamicFormField: Component<Props> = (props: Props) => {
             }
         }
         return (
-            <div>
+            <div class="border border-gray-300 rounded-md p-2 my-2">
                 <h1
                     class="w-full"
                     hidden={props.field.inputType === "nestedForm"}
@@ -109,7 +109,7 @@ const DynamicFormField: Component<Props> = (props: Props) => {
                         {props.field.inputType === "arrayForm" ? (
                             <For each={arrayFields}>
                                 {(arrayField, i) => (
-                                    <div class="py-4 border-t-2 border-b-2 border-gray-300">
+                                    <div class="border px-2 py-1 my-1 rounded-md border-gray-300">
                                         <div class="flex justify-between items-center">
                                             <h1
                                                 class="w-full"
