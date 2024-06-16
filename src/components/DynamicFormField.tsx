@@ -98,13 +98,16 @@ const DynamicFormField: Component<Props> = (props: Props) => {
                 {props.field.fields.map((field: IField) => (
                     <>
                         <span hidden={props.field.inputType !== "arrayForm"}>
-                            <AiTwotonePlusCircle
-                                onClick={() =>
+                            <button
+                                type="button"
+                                class="border border-gray-700 rounded-md p-1 flex justify-evenly items-center"
+                                onClick={(e: Event) => {
                                     addArrayField(field, complexFieldLabel)
-                                }
-                                color="green"
-                                size={36}
-                            />
+                                }}
+                            >
+                                Add More
+                                <AiTwotonePlusCircle color="green" size={36} />
+                            </button>
                         </span>
                         {props.field.inputType === "arrayForm" ? (
                             <For each={arrayFields}>
