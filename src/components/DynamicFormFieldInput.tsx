@@ -1,12 +1,11 @@
 import { Component, createSignal } from "solid-js"
 import { SetStoreFunction, Store } from "solid-js/store"
-import { IField } from "../interfaces/form-field"
-import { IForm } from "../interfaces/form"
+import { IField, IForm } from "../interfaces"
 
 interface Props {
     form: IForm
     field: IField
-    instance?: number
+    index?: number
     setFormValues: SetStoreFunction<{
         [key: string]: any
     }>
@@ -15,14 +14,15 @@ interface Props {
 }
 
 const DynamicFormFieldInput: Component<Props> = (props: Props) => {
-    const inputId = `${props.form.id}-${props.field.id}${props.instance !== undefined ? props.instance : ""}`
+    const inputId = `${props.form.id}-${props.field.id}${props.index !== undefined ? props.index + 1 : ""}`
+    const inputName = `${props.field.name}${props.index !== undefined ? props.index + 1 : ""}`
     switch (props.field.inputType) {
         case "submit":
             return (
                 <div class="w-full my-4">
                     <input
                         id={inputId}
-                        name={`${props.field.name}${props.instance !== undefined ? props.instance : ""}`}
+                        name={inputName}
                         class="border-gray-500 border rounded w-full bg-blue-500 text-white"
                         type={props.field.inputType}
                         value={props.field.label}
@@ -66,7 +66,7 @@ const DynamicFormFieldInput: Component<Props> = (props: Props) => {
                         class="border-gray-500 border rounded w-full"
                         type={props.field.inputType}
                         id={inputId}
-                        name={`${props.field.name}${props.instance !== undefined ? props.instance : ""}`}
+                        name={inputName}
                         value={getInputValue()}
                         onInput={e => {
                             setInputValue((e.target as HTMLInputElement).value)
