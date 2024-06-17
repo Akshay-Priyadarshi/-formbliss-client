@@ -1,11 +1,16 @@
-import { Component } from "solid-js"
-import Layout from "../components/Layout"
+import { ParentComponent } from "solid-js"
+import DashboardSidebar from "../components/DashboardSidebar"
+import DasboardMain from "../components/DasboardMain"
+import ScreenLayout from "../components/ScreenLayout"
 
-const DashboardPage: Component<{}> = props => {
+const DashboardPage: ParentComponent = props => {
     return (
-        <Layout>
-            <h1>Dashboard</h1>
-        </Layout>
+        <ScreenLayout>
+            <div class="flex w-full h-full">
+                <DashboardSidebar />
+                <DasboardMain children={props.children} />
+            </div>
+        </ScreenLayout>
     )
 }
 
