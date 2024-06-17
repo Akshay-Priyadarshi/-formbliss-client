@@ -3,9 +3,9 @@ import NavBar from "./NavBar"
 
 const Layout: ParentComponent<{}> = props => {
     return (
-        <div class="px-[6rem] py-[3rem]">
+        <div>
             <NavBar />
-            <section class="py-[2rem]">{props.children}</section>
+            <section class="py-[2rem] px-[4rem]">{props.children}</section>
         </div>
     )
 }
