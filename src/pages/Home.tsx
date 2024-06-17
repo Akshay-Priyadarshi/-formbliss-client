@@ -1,6 +1,7 @@
 import { Component } from "solid-js"
 import Layout from "../components/Layout"
 import HeroImage from "../assets/hero.svg"
+import { A } from "@solidjs/router"
 
 const Home: Component<{}> = () => {
     return (
@@ -21,6 +22,12 @@ const Home: Component<{}> = () => {
                         user-friendly tools. Start building streamline your data
                         collection process!
                     </p>
+                    <div class="h-10"></div>
+                    <A href="/dashboard">
+                        <button class="bg-slate-700 text-white text-lg py-2 px-4 rounded-md">
+                            Lets build some forms 🚀
+                        </button>
+                    </A>
                 </section>
                 <section class="flex-1 w-full">
                     <HeroImage class="w-full h-full object-contain" />
