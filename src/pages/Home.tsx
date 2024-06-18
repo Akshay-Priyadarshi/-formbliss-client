@@ -1,6 +1,5 @@
 import { Component } from "solid-js"
 import Layout from "../components/Layout"
-import HeroImage from "../assets/hero.svg"
 import { A } from "@solidjs/router"
 
 const Home: Component<{}> = () => {
@@ -30,7 +29,7 @@ const Home: Component<{}> = () => {
                     </A>
                 </section>
                 <section class="flex-1 w-full">
-                    <HeroImage class="w-full h-full object-contain" />
+                    <img src="/hero.svg" alt="HERO" />
                 </section>
             </section>
         </Layout>

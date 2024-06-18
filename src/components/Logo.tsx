@@ -5,7 +5,7 @@ const Logo: Component = props => {
     return (
         <A href="/" class="flex items-center">
             <img
-                src="src/assets/android-chrome-192x192.png"
+                src="/android-chrome-192x192.png"
                 alt="Logo"
                 class="w-10 h-10"
             />
