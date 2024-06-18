@@ -2,7 +2,7 @@ import { Component } from "solid-js"
 import Layout from "../components/Layout"
 import { A } from "@solidjs/router"
 
-const Home: Component<{}> = () => {
+const HomePage: Component<{}> = () => {
     return (
         <Layout>
             <section class="h-[80vh] flex flex-row">
@@ -36,4 +36,4 @@ const Home: Component<{}> = () => {
     )
 }
 
-export default Home
+export default HomePage
