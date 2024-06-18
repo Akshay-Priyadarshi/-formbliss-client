@@ -28,8 +28,12 @@ const HomePage: Component<{}> = () => {
                         </button>
                     </A>
                 </section>
-                <section class="flex-1 w-full">
-                    <img src="/hero.svg" alt="HERO" />
+                <section class="flex-1 w-full flex justify-center items-center">
+                    <img
+                        class="w-full object-contain"
+                        src="/hero.svg"
+                        alt="HERO"
+                    />
                 </section>
             </section>
         </Layout>
