@@ -12,6 +12,7 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "@tanstack/solid-query-devtools": "^5.45.0",
         "autoprefixer": "^10.4.19",
         "prettier": "^3.3.2",
         "solid-devtools": "^0.29.3",
@@ -22,6 +23,8 @@
     },
     "dependencies": {
         "@solidjs/router": "^0.13.5",
+        "@tanstack/solid-query": "^5.45.0",
+        "axios": "^1.7.2",
         "solid-icons": "^1.1.0",
         "solid-js": "^1.8.17"
     }
