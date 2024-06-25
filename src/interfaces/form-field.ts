@@ -1,40 +1,54 @@
 export enum InputTypes {
-    Button = "button",
-    Checkbox = "checkbox",
-    Color = "color",
-    Date = "date",
-    DatetimeLocal = "datetime-local",
-    Email = "email",
-    File = "file",
-    Hidden = "hidden",
-    Image = "image",
-    Month = "month",
-    Number = "number",
-    Password = "password",
-    Radio = "radio",
-    Range = "range",
-    Reset = "reset",
-    Search = "search",
-    Submit = "submit",
-    Tel = "tel",
-    Text = "text",
-    Time = "time",
-    Url = "url",
-    Week = "week"
+    BUTTON = "button",
+    CHECKBOX = "checkbox",
+    COLOR = "color",
+    DATE = "date",
+    DATETIME_LOCAL = "datetime-local",
+    EMAIL = "email",
+    FILE = "file",
+    HIDDEN = "hidden",
+    IMAGE = "image",
+    MONTH = "month",
+    NUMBER = "number",
+    PASSWORD = "password",
+    RADIO = "radio",
+    RANGE = "range",
+    RESET = "reset",
+    SEARCH = "search",
+    SUBMIT = "submit",
+    TEL = "tel",
+    TEXT = "text",
+    TIME = "time",
+    URL = "url",
+    WEEK = "week",
+    ARRAY_INPUT = "array-input",
+    OBJECT_INPUT = "object-input"
 }
 
-export interface IFieldOptions {
-    required?: boolean | null
-    arrayMin?: number | null
-    arrayMax?: number | null
+export enum DataTypes {
+    STRING = "string",
+    NUMBER = "number",
+    BOOLEAN = "boolean",
+    OBJECT = "object",
+    ARRAY = "array"
 }
 
 export interface IField {
     id: string
     name: string
-    label?: string
-    inputType?: string
-    dataType?: string
-    fields: IField[] | any[]
-    options?: IFieldOptions
+    label: string
+    placeholder?: string
+    inputType?: InputTypes
+    dataType?: DataTypes
+    dataSubType?: DataTypes
+    choices?: string[]
+    regex?: string
+    minLength?: number
+    maxLength?: number
+    min?: number
+    max?: number
+    parentFieldId?: string
+    createdAt: string
+    updatedAt: string
+    nestedFields?: IField[]
 }
