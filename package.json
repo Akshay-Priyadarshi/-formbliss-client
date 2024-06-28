@@ -12,18 +12,18 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@tanstack/solid-query-devtools": "^5.45.0",
+        "@tanstack/solid-query-devtools": "^5.48.0",
         "autoprefixer": "^10.4.19",
         "prettier": "^3.3.2",
         "solid-devtools": "^0.29.3",
         "tailwindcss": "^3.4.4",
-        "typescript": "^5.4.5",
-        "vite": "^5.3.1",
+        "typescript": "^5.5.2",
+        "vite": "^5.3.2",
         "vite-plugin-solid": "^2.10.2"
     },
     "dependencies": {
-        "@solidjs/router": "^0.13.5",
-        "@tanstack/solid-query": "^5.45.0",
+        "@solidjs/router": "^0.13.6",
+        "@tanstack/solid-query": "^5.48.0",
         "axios": "^1.7.2",
         "solid-icons": "^1.1.0",
         "solid-js": "^1.8.17"
